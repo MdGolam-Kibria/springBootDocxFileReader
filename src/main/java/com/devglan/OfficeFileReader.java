@@ -23,6 +23,7 @@ public class OfficeFileReader {
                 List<XWPFParagraph> paragraphList = xdoc.getParagraphs();
 
                 List<XWPFPictureData> havePicture = xdoc.getAllPictures();
+
                 if (havePicture.isEmpty()) {
                     System.out.println("sorry you don't have any picture in your file");
                 } else {
@@ -31,6 +32,25 @@ public class OfficeFileReader {
 
 
                 for (XWPFParagraph paragraph : paragraphList) {
+
+
+                    String paragraphText = paragraph.getParagraphText();
+                    System.out.println("ParagraphTextIs = " + paragraphText + "\n\t");
+
+                    String containsText = "Customer Name:";
+
+                    if (paragraphText.contains(containsText)) {
+                        int fullLength = paragraphText.length();
+                        String objectVal = paragraphText.substring(containsText.length(), fullLength);
+                        String mainObject = objectVal.replaceAll("\\s+", "");
+                        System.out.println(mainObject);
+                        System.out.println("Your previous customer Object Is = " + objectVal);
+                        System.out.println("Your Customer Object Is = " + mainObject);
+
+
+
+
+                    }
 
                     System.out.println(paragraph.getText());
                     System.out.println(paragraph.getAlignment());// LEFT
